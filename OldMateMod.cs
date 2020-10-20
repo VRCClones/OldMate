@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Reflection;
 using UIExpansionKit;
+using UnityEngine;
 using VRC;
 
 namespace OldMate
@@ -20,8 +21,14 @@ namespace OldMate
     public class OldMateMod : MelonMod
     {
 
+        private const string ModCategory = "OldMate";
+        private const string UpdateDelayPref = "Update Delay";
+        private static float NextUpdateTime;
+
         public override void OnApplicationStart()
         {
+            MelonPrefs.RegisterCategory(ModCategory, "OldMate");
+            MelonPrefs.RegisterFloat(ModCategory, UpdateDelayPref, 2.0f, "The amount of seconds to wait before updating display names in menus.");
             if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(UiExpansionKitMod)))
             {
                 typeof(UiExpansionKitSupport).GetMethod(nameof(UiExpansionKitSupport.Initialize), BindingFlags.Static | BindingFlags.Public)!.Invoke(null, new object[0]);
@@ -58,12 +65,20 @@ namespace OldMate
 
             if (QuickMenu.prop_QuickMenu_0.gameObject.activeInHierarchy)
             {
-                VRChatAPI.UpdateQuickMenuText();
+                if (Time.time > NextUpdateTime)
+                {
+                    VRChatAPI.UpdateQuickMenuText();
+                    NextUpdateTime = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
+                }
             }
 
             if (VRCUiManager.field_Protected_Static_VRCUiManager_0.menuContent.activeInHierarchy)
             {
-                VRChatAPI.UpdateMenuContentText();
+                if (Time.time > NextUpdateTime)
+                {
+                    VRChatAPI.UpdateMenuContentText();
+                    NextUpdateTime = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
+                }
             }
         }
 
