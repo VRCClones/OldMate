@@ -30,6 +30,7 @@ namespace OldMate
         public static void RemoveNickname(String UserId)
         {
             nicknames.RemoveAll(n => n.UserId == UserId);
+            SaveNicknames();
         }
 
         public static bool Contains(string UserId)
