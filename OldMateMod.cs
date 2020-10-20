@@ -23,7 +23,8 @@ namespace OldMate
 
         private const string ModCategory = "OldMate";
         private const string UpdateDelayPref = "Update Delay";
-        private static float NextUpdateTime;
+        private static float NextQuickMenuUpdate;
+        private static float NextMenuContentUpdate;
 
         public override void OnApplicationStart()
         {
@@ -65,19 +66,19 @@ namespace OldMate
 
             if (QuickMenu.prop_QuickMenu_0.gameObject.activeInHierarchy)
             {
-                if (Time.time > NextUpdateTime)
+                if (Time.time > NextQuickMenuUpdate)
                 {
                     VRChatAPI.UpdateQuickMenuText();
-                    NextUpdateTime = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
+                    NextQuickMenuUpdate = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
                 }
             }
 
             if (VRCUiManager.field_Protected_Static_VRCUiManager_0.menuContent.activeInHierarchy)
             {
-                if (Time.time > NextUpdateTime)
+                if (Time.time > NextMenuContentUpdate)
                 {
                     VRChatAPI.UpdateMenuContentText();
-                    NextUpdateTime = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
+                    NextMenuContentUpdate = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
                 }
             }
         }
