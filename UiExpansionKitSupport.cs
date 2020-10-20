@@ -31,6 +31,8 @@ namespace OldMate
                     {
                         VRChatAPI.UpdatePlayerNameplate(Player);
                     }
+                    VRChatAPI.UpdateQuickMenuText();
+                    VRChatAPI.UpdateMenuContentText();
                 }
             });
         }
@@ -46,7 +48,8 @@ namespace OldMate
                 {
                     VRChatAPI.UpdatePlayerNameplate(Player, true);
                 }
-                VRChatAPI.UpdateMenuContentText();
+                VRChatAPI.UpdateQuickMenuText(true);
+                VRChatAPI.UpdateMenuContentText(true);
                 RemoveNickname(UserInfo.user.id);
             }
         }
