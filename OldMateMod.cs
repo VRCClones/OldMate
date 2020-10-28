@@ -1,4 +1,5 @@
 ﻿using MelonLoader;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +15,7 @@ namespace OldMate
         public const string Name = "OldMate";
         public const string Author = "dave-kun";
         public const string Company = null;
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
         public const string DownloadLink = "https://github.com/dave-kun/OldMate";
     }
 
@@ -61,7 +62,7 @@ namespace OldMate
 
         public override void OnUpdate()
         {
-            if (RoomManagerBase.field_Internal_Static_ApiWorld_0 == null && RoomManagerBase.field_Internal_Static_ApiWorldInstance_0 == null)
+            if (RoomManager.field_Internal_Static_ApiWorld_0 == null && RoomManager.field_Internal_Static_ApiWorldInstance_0 == null)
                 return;
 
             if (QuickMenu.prop_QuickMenu_0.gameObject.activeInHierarchy)
@@ -73,7 +74,7 @@ namespace OldMate
                 }
             }
 
-            if (VRCUiManager.field_Protected_Static_VRCUiManager_0.menuContent.activeInHierarchy)
+            if (VRChatAPI.VRCUiManagerInstance.menuContent.activeInHierarchy)
             {
                 if (Time.time > NextMenuContentUpdate)
                 {

@@ -15,6 +15,14 @@ namespace OldMate
         public delegate Player GetPlayerFromIdMethod(string id);
         public static GetPlayerFromIdMethod GetPlayerFromIdMethodDelegate;
 
+        public static VRCUiManager VRCUiManagerInstance
+        {
+            get
+            {
+                return (VRCUiManager)typeof(VRCUiManager).GetMethods().First(x => (x.ReturnType == typeof(VRCUiManager))).Invoke(null, Array.Empty<object>());
+            }
+        }
+
         public static void ShowPopup(this VRCUiPopupManager vrcUiPopupManager, string title, string FilledText, InputField.InputType type, bool keypad, string text, Il2CppSystem.Action<string, List<KeyCode>, Text> ButtonAction, Il2CppSystem.Action CancelAction, string boxText = "Enter text", bool somebool = true, Il2CppSystem.Action<VRCUiPopup> CreatedAction = null)
         {
             vrcUiPopupManager?.Method_Public_Void_String_String_InputType_Boolean_String_Action_3_String_List_1_KeyCode_Text_Action_String_Boolean_Action_1_VRCUiPopup_0(title, FilledText, type, keypad, text, ButtonAction, CancelAction, boxText, somebool, CreatedAction);
@@ -54,7 +62,7 @@ namespace OldMate
 
         public static void UpdateMenuContentText(bool OriginalName = false)
         {
-            foreach (Text t in VRCUiManager.field_Protected_Static_VRCUiManager_0.menuContent.GetComponentsInChildren<Text>())
+            foreach (Text t in VRCUiManagerInstance.menuContent.GetComponentsInChildren<Text>())
             {
                 NicknameManager.nicknames.ForEach(nickname =>
                 {
