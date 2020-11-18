@@ -58,7 +58,7 @@ namespace OldMate
             {
                 NicknameManager.nicknames.ForEach(nickname =>
                 {
-                    if (t.text.Contains(!OriginalName ? nickname.OriginalName : nickname.ModifiedName))
+                    if (t.text.Equals(!OriginalName ? nickname.OriginalName : nickname.ModifiedName))
                     {
                         t.text = t.text.Replace(!OriginalName ? nickname.OriginalName : nickname.ModifiedName, !OriginalName ? nickname.ModifiedName : nickname.OriginalName);
                     }
@@ -72,7 +72,7 @@ namespace OldMate
             {
                 NicknameManager.nicknames.ForEach(nickname =>
                 {
-                    if (t.text.Contains(!OriginalName ? nickname.OriginalName : nickname.ModifiedName))
+                    if (t.text.Equals(!OriginalName ? nickname.OriginalName : nickname.ModifiedName))
                     {
                         t.text = t.text.Replace(!OriginalName ? nickname.OriginalName : nickname.ModifiedName, !OriginalName ? nickname.ModifiedName : nickname.OriginalName);
                     }
