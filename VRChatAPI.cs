@@ -15,11 +15,17 @@ namespace OldMate
         public delegate Player GetPlayerFromIdMethod(string id);
         public static GetPlayerFromIdMethod GetPlayerFromIdMethodDelegate;
 
+        private static MethodInfo VRCUiManagerInstanceMethodInfo;
+
         public static VRCUiManager VRCUiManagerInstance
         {
             get
             {
-                return (VRCUiManager)typeof(VRCUiManager).GetMethods().First(x => (x.ReturnType == typeof(VRCUiManager))).Invoke(null, Array.Empty<object>());
+                if(VRCUiManagerInstanceMethodInfo == null)
+                {
+                    VRCUiManagerInstanceMethodInfo = typeof(VRCUiManager).GetMethods().First(x => (x.ReturnType == typeof(VRCUiManager)));
+                }
+                return (VRCUiManager)VRCUiManagerInstanceMethodInfo.Invoke(null, Array.Empty<object>());
             }
         }
 
