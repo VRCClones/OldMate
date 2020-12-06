@@ -1,5 +1,5 @@
-﻿using MelonLoader;
-using System;
+﻿using Harmony;
+using MelonLoader;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
@@ -15,7 +15,7 @@ namespace OldMate
         public const string Name = "OldMate";
         public const string Author = "dave-kun";
         public const string Company = null;
-        public const string Version = "1.2.0";
+        public const string Version = "1.3.0";
         public const string DownloadLink = "https://github.com/dave-kun/OldMate";
     }
 
@@ -30,7 +30,7 @@ namespace OldMate
         public override void OnApplicationStart()
         {
             MelonPrefs.RegisterCategory(ModCategory, "OldMate");
-            MelonPrefs.RegisterFloat(ModCategory, UpdateDelayPref, 2.0f, "The amount of seconds to wait before updating display names in menus.");
+            MelonPrefs.RegisterFloat(ModCategory, UpdateDelayPref, 1.0f, "The amount of seconds to wait before updating display names in menus.");
             if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(UiExpansionKitMod)))
             {
                 typeof(UiExpansionKitSupport).GetMethod(nameof(UiExpansionKitSupport.Initialize), BindingFlags.Static | BindingFlags.Public)!.Invoke(null, new object[0]);
@@ -69,6 +69,14 @@ namespace OldMate
             {
                 if (Time.time > NextQuickMenuUpdate)
                 {
+                    var players = PlayerManager.field_Private_Static_PlayerManager_0.field_Private_List_1_Player_0;
+                    for (int i = 0; i < players.Count; i++)
+                    {
+                        if (players[i] != null)
+                        {
+                            VRChatAPI.UpdatePlayerNameplate(players[i], false);
+                        }
+                    }
                     VRChatAPI.UpdateQuickMenuText();
                     NextQuickMenuUpdate = Time.time + MelonPrefs.GetFloat(ModCategory, UpdateDelayPref);
                 }
