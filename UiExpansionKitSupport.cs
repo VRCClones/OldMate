@@ -1,5 +1,6 @@
 ﻿using UIExpansionKit.API;
 using UnityEngine;
+using UnityEngine.UI;
 using static OldMate.NicknameManager;
 
 namespace OldMate
@@ -15,7 +16,7 @@ namespace OldMate
 
         private static void UpdateNicknameUserDetailsMenu()
         {
-            VRChatAPI.ShowInputPopup("Type a nickname", "Accept", delegate (string name)
+            UIExpansionKit.API.BuiltinUiUtils.ShowInputPopup("Type a nickname", "", InputField.InputType.Standard, false, "Accept", (name, _, __) =>
             {
                 var Menu = GameObject.Find("Screens").transform.Find("UserInfo");
                 var UserInfo = Menu.transform.GetComponentInChildren<VRC.UI.PageUserInfo>();

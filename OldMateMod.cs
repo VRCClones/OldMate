@@ -15,7 +15,7 @@ namespace OldMate
         public const string Name = "OldMate";
         public const string Author = "dave-kun";
         public const string Company = null;
-        public const string Version = "1.3.0";
+        public const string Version = "1.4.0";
         public const string DownloadLink = "https://github.com/dave-kun/OldMate";
     }
 
