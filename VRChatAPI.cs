@@ -31,7 +31,7 @@ namespace OldMate
 
         public static void UpdatePlayerNameplate(Player player, bool OriginalName = false)
         {
-            if (NicknameManager.Contains(player.prop_APIUser_0.id))
+            if (NicknameManager.Contains(player?.prop_APIUser_0?.id))
             {
                 player.prop_VRCPlayer_0.nameplate.uiName.text = !OriginalName ? NicknameManager.GetModifiedName(player.field_Private_APIUser_0.id) : player.field_Private_APIUser_0.displayName;
             }
