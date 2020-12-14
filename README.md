@@ -1,5 +1,5 @@
 # OldMate
-A MelonLoader mod which allows you to assign custom nicknames to players.
+A MelonLoader mod which allows you to assign custom nicknames to players on VRChat.
 
 ![alt text](https://i.imgur.com/wr1I7sY.png)
 
