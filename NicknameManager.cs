@@ -27,7 +27,7 @@ namespace OldMate
             SaveNicknames();
         }
 
-        public static void RemoveNickname(String UserId)
+        public static void RemoveNickname(string UserId)
         {
             nicknames.RemoveAll(n => n.UserId == UserId);
             SaveNicknames();

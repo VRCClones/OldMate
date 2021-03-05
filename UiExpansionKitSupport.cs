@@ -23,11 +23,11 @@ namespace OldMate
                 if (Menu != null && UserInfo != null)
                 {
                     Nickname n = new Nickname();
-                    n.UserId = UserInfo?.user?.id;
-                    n.OriginalName = UserInfo?.user?.displayName;
+                    n.UserId = UserInfo?.field_Public_APIUser_0?.id;
+                    n.OriginalName = UserInfo?.field_Public_APIUser_0?.displayName;
                     n.ModifiedName = name;
                     UpdateNickname(n);
-                    var Player = VRChatAPI.GetPlayerFromId(UserInfo.user.id);
+                    var Player = VRChatAPI.GetPlayerFromId(UserInfo.field_Public_APIUser_0.id);
                     if (Player != null)
                     {
                         VRChatAPI.UpdatePlayerNameplate(Player);
@@ -44,14 +44,14 @@ namespace OldMate
             var UserInfo = Menu.transform.GetComponentInChildren<VRC.UI.PageUserInfo>();
             if (Menu != null && UserInfo != null)
             {
-                var Player = VRChatAPI.GetPlayerFromId(UserInfo.user.id);
+                var Player = VRChatAPI.GetPlayerFromId(UserInfo.field_Public_APIUser_0.id);
                 if (Player != null)
                 {
                     VRChatAPI.UpdatePlayerNameplate(Player, true);
                 }
+                RemoveNickname(UserInfo.field_Public_APIUser_0.id);
                 VRChatAPI.UpdateQuickMenuText(true);
                 VRChatAPI.UpdateMenuContentText(true);
-                RemoveNickname(UserInfo.user.id);
             }
         }
 
